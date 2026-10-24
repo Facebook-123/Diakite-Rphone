@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DIAKITE RPHONE : smartphones et accessoires au Maroc.">
+<meta name="theme-color" content="#101a2d">
+<title>DIAKITE RPHONE — Boutique en ligne</title>
+
+<style>
+*{box-sizing:border-box}
+:root{color-scheme:light;--ink:#172238;--muted:#69768a;--blue:#1769e0;--blue-dark:#1054bd;--line:#e6eaf0;--paper:#fff;--canvas:#f6f7f9}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;font-weight:700}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #75aaff;outline-offset:3px}
+.topline{background:#0b1424;color:#cbd5e1;text-align:center;padding:9px 16px;font-size:12px;letter-spacing:.03em}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);padding:0 max(5%,calc((100% - 1180px)/2));min-height:76px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:850;letter-spacing:-.06em;color:#152238}
+.logo span{color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:18px}
+.badge{color:#4d5c70;font-size:13px;font-weight:650}
+.header-cta,.hero button,.buy,.submit{background:var(--blue);color:white;border:0;border-radius:9px;padding:12px 18px;transition:background .2s,transform .2s,box-shadow .2s}
+.header-cta{font-size:13px;text-decoration:none}
+.header-cta:hover,.hero button:hover,.buy:hover,.submit:hover{background:var(--blue-dark);box-shadow:0 8px 20px #1769e033;transform:translateY(-1px)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(90deg,#0b1424d9 0%,#101f3699 48%,#12244040 100%),url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1800&q=85');background-size:cover;background-position:center 44%;color:white;padding:clamp(58px,8vw,90px) 6%;min-height:350px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.hero-content{width:min(1180px,100%);margin:0 auto}
+.hero h1{font-size:clamp(36px,5.5vw,58px);letter-spacing:-.055em;line-height:1.06;max-width:650px;margin:16px 0}
+.hero p{max-width:440px;line-height:1.6;color:#e0e7f0;font-size:15px;margin:0 0 22px}
+.eyebrow{font-size:11px;letter-spacing:.18em;color:#9cc6ff;font-weight:800}
+.hero button{padding:14px 21px;background:#fff;color:#14213a}
+.hero button:hover{background:#edf4ff;color:#0e55bb}
+.trust{display:flex;gap:22px;flex-wrap:wrap;margin-top:35px;font-size:12px;color:#e4ebf4}
+.trust span{display:flex;align-items:center;gap:8px}
+.trust span:before{content:"✓";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#ffffff20;color:#a9ceff;font-weight:800}
+main{max-width:1180px;margin:auto;padding:62px 5% 72px}
+.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:23px}
+.section-heading h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.04em;margin:7px 0}
+.section-heading p{color:var(--muted);font-size:14px;margin:0}
+.section-kicker{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.filters{display:flex;gap:9px;overflow:auto;padding:0 0 20px;scrollbar-width:thin}
+.filters button{border:1px solid #d9dfe8;background:transparent;color:#526075;padding:10px 17px;border-radius:7px;white-space:nowrap;font-size:13px;transition:all .2s}
+.filters button:hover{border-color:#8caee0;color:var(--blue)}
+.filters button.active{background:#172238;color:white;border-color:#172238}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{background:var(--paper);border:1px solid #edf0f4;border-radius:12px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 35px #192a4014;border-color:#dce5f0}
+.photo{height:clamp(155px,24vw,255px);background:#f1f4f7;position:relative;overflow:hidden;cursor:zoom-in}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.photo:hover img{transform:scale(1.045)}
+.zoom-hint{position:absolute;right:11px;bottom:11px;background:#101a2dd9;color:white;border-radius:5px;padding:7px 10px;font-size:11px}
+.info{padding:17px}
+.category-label{display:block;color:#778397;font-size:10px;font-weight:750;letter-spacing:.11em;text-transform:uppercase;margin-bottom:7px}
+.info h3{font-size:15px;min-height:38px;line-height:1.4;margin:0 0 8px;color:#1d2a3e}
+.price{font-weight:800;color:#172238;font-size:21px;letter-spacing:-.03em;margin:0 0 15px}
+.price span{color:#778397;font-size:12px;letter-spacing:0;font-weight:600;margin-left:3px}
+.buy{width:100%;padding:12px;font-size:13px;border-radius:7px}
+.offer{display:flex;justify-content:space-between;align-items:center;gap:24px;background:#14213a;color:white;border-radius:12px;padding:30px 34px;margin-top:52px}
+.offer-copy{max-width:620px}
+.offer .section-kicker{color:#a9ceff}
+.offer h2{font-size:24px;margin:7px 0}
+.offer p{color:#c2ccda;line-height:1.65;margin:0}
+.offer .buy{width:auto;white-space:nowrap;background:white;color:#14213a}
+.offer .buy:hover{background:#edf4ff}
+footer{background:#0b1424;text-align:center;padding:25px 16px;color:#9da9ba;font-size:12px}
+.lightbox{display:none;position:fixed;inset:0;z-index:1000;background:#030814f5;align-items:center;justify-content:center;padding:20px}
+.lightbox.open{display:flex}
+.lightbox-inner{width:min(900px,100%);position:relative;text-align:center;color:white}
+.lightbox img{max-width:100%;height:min(65vh,600px);object-fit:contain;border-radius:12px}
+.lightbox-title{font-size:18px;font-weight:bold;margin:12px}
+.lightbox-price{color:#8dcaff;font-weight:bold}
+.lb-close,.lb-prev,.lb-next{border:0;color:white;background:#ffffff25;border-radius:50%;width:44px;height:44px;font-size:24px}
+.lb-close{position:absolute;right:0;top:-50px}
+.lb-prev,.lb-next{position:absolute;top:40%}
+.lb-prev{left:0}.lb-next{right:0}
+.lb-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.lb-dots button{width:9px;height:9px;border:0;border-radius:50%;background:#64748b;padding:0}
+.lb-dots button.active{background:white}
+dialog{border:0;border-radius:14px;padding:0;width:min(94vw,470px);box-shadow:0 20px 80px #0005}
+dialog::backdrop{background:#07132bbd}
+.modal{padding:26px}
+.modal h2{margin:4px 0 8px;letter-spacing:-.03em}
+.close{float:right;background:#eef1f5;color:#526075;border:0;border-radius:50%;width:32px;height:32px}
+label{display:block;font-size:13px;font-weight:700;margin:13px 0 5px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d6dce5;border-radius:7px;font:inherit;background:white;color:var(--ink)}
+textarea{resize:vertical}
+.submit{width:100%;margin-top:18px}
+.note{font-size:12px;color:var(--muted);line-height:1.5}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1020px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:560px){header{min-height:66px}.logo{font-size:19px}.header-right{gap:9px}.badge{font-size:11px}.header-cta{padding:10px 12px;font-size:12px}.hero{min-height:400px}.trust{gap:12px}.section-heading{display:block}.section-heading p{margin-top:6px}.grid{gap:11px}.info{padding:13px}.info h3{font-size:14px}.price{font-size:18px}.offer{align-items:flex-start;flex-direction:column;padding:25px}.offer .buy{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+
+<body>
+
+<div class="topline">Livraison partout au Maroc · Paiement à la livraison</div>
+<header>
+  <div class="logo">DIAKITE <span>RPHONE</span></div>
+  <div class="header-right">
+    <div class="badge">🇲🇦 Boutique au Maroc · DH</div>
+    <a class="header-cta" href="#catalogue">Voir la boutique</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">DIAKITE RPHONE · MAROC</div>
+    <h1>La tech, simplement.</h1>
+    <p>Smartphones et accessoires au Maroc.</p>
+    <button onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Voir les produits <span aria-hidden="true">→</span></button>
+  </div>
+</section>
+
+<main id="catalogue">
+  <div class="section-heading">
+    <div>
+      <div class="section-kicker">Notre sélection</div>
+      <h2>Les essentiels high-tech</h2>
+      <p>Des produits utiles, aux prix affichés en dirhams marocains.</p>
+    </div>
+  </div>
+
+  <div class="filters">
+    <button class="active" aria-pressed="true" onclick="filterProducts('Tous',this)">Tous les produits</button>
+    <button aria-pressed="false" onclick="filterProducts('Téléphones',this)">Téléphones</button>
+    <button aria-pressed="false" onclick="filterProducts('Écouteurs',this)">Écouteurs</button>
+    <button aria-pressed="false" onclick="filterProducts('Accessoires',this)">Accessoires</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="offer">
+    <div class="offer-copy">
+      <div class="section-kicker">Un conseil avant de choisir ?</div>
+      <h2>Nous sommes là pour vous aider.</h2>
+      <p>Parcourez la sélection puis contactez-nous sur WhatsApp pour confirmer la disponibilité et organiser votre livraison.</p>
+    </div>
+    <button class="buy" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Parcourir la sélection</button>
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeGallery()">
+  <div class="lightbox-inner">
+    <button class="lb-close" onclick="closeGallery()">×</button>
+    <button class="lb-prev" onclick="moveGallery(-1)">‹</button>
+    <img id="galleryImage" src="" alt="Photo du produit">
+    <button class="lb-next" onclick="moveGallery(1)">›</button>
+    <div class="lightbox-title" id="galleryTitle"></div>
+    <div class="lightbox-price" id="galleryPrice"></div>
+    <div class="lb-dots" id="galleryDots"></div>
+  </div>
+</div>
+
+<footer>© 2026 DIAKITE RPHONE · Prix en DH · Disponibilité à confirmer avant achat.</footer>
+
+<dialog id="order">
+  <div class="modal">
+    <button class="close" onclick="document.getElementById('order').close()">✕</button>
+    <h2>Finaliser ma commande</h2>
+    <p id="selected"></p>
+
+    <form id="form">
+      <label>Nom complet *</label>
+      <input name="nom" required placeholder="Votre nom">
+
+      <label>Téléphone *</label>
+      <input name="telephone" required type="tel" placeholder="06 XX XX XX XX">
+
+      <label>Ville *</label>
+      <select name="ville" required>
+        <option value="">Choisissez votre ville</option>
+        <option>Casablanca</option>
+        <option>Rabat</option>
+        <option>Marrakech</option>
+        <option>Tanger</option>
+        <option>Agadir</option>
+        <option>Fès</option>
+        <option>Autre ville</option>
+      </select>
+
+      <label>Adresse de livraison *</label>
+      <textarea name="adresse" rows="2" required placeholder="Quartier, rue, numéro..."></textarea>
+
+      <label>Quantité</label>
+      <input name="quantite" type="number" min="1" max="20" value="1" required>
+
+      <button class="submit" type="submit">Commander par WhatsApp</button>
+      <p class="note">WhatsApp s'ouvrira avec les détails de votre commande. Vous devrez appuyer sur Envoyer dans WhatsApp.</p>
+    </form>
+  </div>
+</dialog>
+
+<script>
+const WHATSAPP_NUMBER = "212773750784";
+
+const products = [
+  {
+    name:"iPhone 11 64 Go",
+    category:"Téléphones",
+    price:1699,
+    images:[
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85"
+    ]
+  },
+  {
+    name:"iPhone 12 64 Go",
+    category:"Téléphones",
+    price:2199,
+    images:[
+      "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=1000&q=85"
+    ]
+  },
+  {
+    name:"iPhone 13 128 Go",
+    category:"Téléphones",
+    price:2799,
+    images:[
+      "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85"
+    ]
+  },
+  {
+    name:"Smartphone Nova X",
+    category:"Téléphones",
+    price:1899,
+    images:["https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=1000&q=85"]
+  },
+  {
+    name:"Smartphone Nova Lite",
+    category:"Téléphones",
+    price:1299,
+    images:["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85"]
+  },
+  {
+    name:"Écouteurs Bluetooth Pro",
+    category:"Écouteurs",
+    price:149,
+    images:["https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=1000&q=85"]
+  },
+  {
+    name:"Écouteurs sans fil Mini",
+    category:"Écouteurs",
+    price:99,
+    images:["https://images.unsplash.com/photo-1606741965429-8d76ff50bb2f?auto=format&fit=crop&w=1000&q=85"]
+  },
+  {
+    name:"Chargeur rapide USB-C",
+    category:"Accessoires",
+    price:79,
+    images:["https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1000&q=85"]
+  },
+  {
+    name:"Coque antichoc",
+    category:"Accessoires",
+    price:59,
+    images:["https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=1000&q=85"]
+  },
+  {
+    name:"Batterie externe 10 000 mAh",
+    category:"Accessoires",
+    price:179,
+    images:["https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=1000&q=85"]
+  },
+  {
+    name:"Montre connectée Sport",
+    category:"Accessoires",
+    price:249,
+    images:["https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=85"]
+  }
+];
+
+let currentProduct = null;
+let currentImageIndex = 0;
+
+function renderProducts(category = "Tous") {
+  const grid = document.getElementById("grid");
+
+  grid.innerHTML = products
+    .map((product, index) => ({product, index}))
+    .filter(item => category === "Tous" || item.product.category === category)
+    .map(({product, index}) => `
+      <article class="card">
+        <div class="photo" role="button" tabindex="0"
+          aria-label="Agrandir ${product.name}"
+          onclick="openGallery(${index})"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGallery(${index})}">
+          <img src="${product.images[0]}" alt="${product.name}" loading="lazy">
+          <span class="zoom-hint">⌕ Agrandir</span>
+        </div>
+        <div class="info">
+          <span class="category-label">${product.category}</span>
+          <h3>${product.name}</h3>
+          <p class="price">${product.price.toLocaleString("fr-MA")} <span>DH</span></p>
+          <button class="buy" onclick="openOrder(${index})">Acheter maintenant</button>
+        </div>
+      </article>
+    `).join("");
+}
+
+function filterProducts(category, button) {
+  document.querySelectorAll(".filters button").forEach(btn => {
+    btn.classList.remove("active");
+    btn.setAttribute("aria-pressed", "false");
+  });
+  button.classList.add("active");
+  button.setAttribute("aria-pressed", "true");
+  renderProducts(category);
+}
+
+function openGallery(productIndex) {
+  currentProduct = products[productIndex];
+  currentImageIndex = 0;
+  updateGallery();
+  document.getElementById("lightbox").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeGallery() {
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function moveGallery(direction) {
+  if (!currentProduct) return;
+  const images = currentProduct.images;
+  currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+  updateGallery();
+}
+
+function updateGallery() {
+  const images = currentProduct.images;
+  document.getElementById("galleryImage").src = images[currentImageIndex];
+  document.getElementById("galleryTitle").textContent =
+    `${currentProduct.name} · Photo ${currentImageIndex + 1}/${images.length}`;
+  document.getElementById("galleryPrice").textContent = `${currentProduct.price} DH`;
+
+  document.getElementById("galleryDots").innerHTML = images.map((image, index) => `
+    <button class="${index === currentImageIndex ? "active" : ""}"
+      aria-label="Afficher la photo ${index + 1}"
+      onclick="currentImageIndex=${index};updateGallery()"></button>
+  `).join("");
+
+  document.querySelector(".lb-prev").style.display = images.length > 1 ? "" : "none";
+  document.querySelector(".lb-next").style.display = images.length > 1 ? "" : "none";
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeGallery();
+  if (document.getElementById("lightbox").classList.contains("open")) {
+    if (event.key === "ArrowLeft") moveGallery(-1);
+    if (event.key === "ArrowRight") moveGallery(1);
+  }
+});
+
+function openOrder(productIndex) {
+  currentProduct = products[productIndex];
+  document.getElementById("selected").textContent =
+    `${currentProduct.name} — ${currentProduct.price} DH`;
+  document.getElementById("order").showModal();
+}
+
+document.getElementById("form").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const quantity = Number(formData.get("quantite"));
+  const total = currentProduct.price * quantity;
+
+  const message = [
+    "🛍️ *Nouvelle commande DIAKITE RPHONE*",
+    "",
+    `📱 *Produit :* ${currentProduct.name}`,
+    `💰 *Prix unitaire :* ${currentProduct.price} DH`,
+    `🖼️ *Photo du produit :* ${currentProduct.images[0]}`,
+    `🔢 *Quantité :* ${quantity}`,
+    `💵 *Total hors livraison :* ${total} DH`,
+    "",
+    `👤 *Nom :* ${formData.get("nom")}`,
+    `📞 *Téléphone :* ${formData.get("telephone")}`,
+    `📍 *Ville :* ${formData.get("ville")}`,
+    `🏠 *Adresse :* ${formData.get("adresse")}`,
+    "",
+    "🚚 Paiement à la livraison"
+  ].join("\n");
+
+  const whatsappURL =
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappURL, "_blank");
+});
+
+renderProducts();
+</script>
+
+</body>
+</html>
